@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#registerbtn').click(function () {
+
+                console.log("test")
+
+                var firstName = $('#FirstName').val();
+                var lastName = $('#LastName').val();
+                var username = $('#Username').val();
+                var email = $('#Email').val();
+                var password = $('#Password').val();
+
+
+
+                var data = { FirstName: firstName, LastName: lastName, Username: username, Email: email, Password: password };
+
+                console.log(data);
+
+                $.ajax({
+                    url: 'https://localhost:44388/api/Auth/register',
+                    data: JSON.stringify(data),
+                    method: 'Post',
+                    contentType: "application/json",
+                    dataType : "json",
+                    success: function (data) {
+                        console.log(data);
+                        alert('data is added :)')
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+
+        <hr>
+
+        <label for="FirstName"><b>FirstName</b></label>
+        <input type="text" placeholder="Enter FirstName" name="FirstName" id="FirstName" required><br>
+
+        <label for="LastName"><b>LastName</b></label>
+        <input type="text" placeholder="Enter LastName" name="LastName" id="LastName" required><br>
+
+        <label for="Username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="Username" id="Username" required><br>
+
+        <label for="Email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="Email" id="Email" required><br>
+
+        <label for="Password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="Password" id="Password" required>
+
+        <button class="registerbtn" id="registerbtn">Register</button>
+    </div>
+</body>
+</html>
